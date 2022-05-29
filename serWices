@@ -1,0 +1,83 @@
+#!/bin/bash
+#
+#Activación y verificación de servicios.
+#
+#Todo se llevará a cabo de forma dinámica y automatizada
+#a través de una GUI interactiva desarrollada con Whiptails.
+#
+#Herramienta desarrollada para SysAdmins sin experiencia.
+#
+#ShadowVMX
+#
+#
+
+trap executeF SIGINT
+
+executeF(){
+	echo " "
+	echo "[*]Saliendo ..."
+	echo " "
+  rm services.txt &> /dev/null
+	exit
+}
+
+
+whiptail --title "Ser-W-ices ---- ShadowVMX" --msgbox "              Listando los servicios activos actuales..." 8 78
+
+
+{
+
+ for ((i=0;i<100;i++)); do
+	if [[ $i == 67 ]] ; then
+	service --status-all | grep "+" > services.txt
+	fi
+        sleep 0.01
+        echo $i
+ done
+ } | whiptail --gauge "                   Cargando ... " 6 50 0
+
+
+
+whiptail --title "Servicios Activos Actuales" \
+         --textbox services.txt 30 80 \
+	 --scrolltext
+
+
+AnsWer=$(whiptail --title "¿Desea activar o desactivar servicios?" \
+                     --inputbox "Activar o Desactivar" 8 78 Activar \
+                     3>&1 1>&2 2>&3)
+
+if [[ $AnsWer == "Activar" ]] ; then
+	SerVice=$(whiptail --title "Escriba el nombre correcto del servicio." \
+                     --inputbox "Servicio: " 8 78 ssh \
+                     3>&1 1>&2 2>&3)
+
+	service $SerVice start &> /dev/null
+
+
+whiptail --title "Ser-W-ices --> COMPLETADO" --msgbox "                         Servicio $SerVice Activado." 8 78
+
+fi
+
+
+if [[ $AnsWer == "Desactivar" ]] ; then
+	SerVice=$(whiptail --title "Escriba el nombre correcto del servicio." \
+                     --inputbox "Servicio: " 8 78 ssh \
+                     3>&1 1>&2 2>&3)
+
+        service $SerVice stop &> /dev/null
+
+
+whiptail --title "Ser-W-ices --> COMPLETADO" --msgbox "                         Servicio $SerVice Desactivado." 8 78
+
+fi
+
+service --status-all | grep "+" > services.txt
+
+whiptail --title "Listando de nuevo los Servicios Activos Actuales" \
+         --textbox services.txt 30 80 \
+         --scrolltext
+
+rm -f services.txt &> /dev/null
+
+whiptail --title "ShadowVMX" --msgbox "                         Gracias por usar SerWices." 8 78
