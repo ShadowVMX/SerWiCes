@@ -25,6 +25,6 @@ Para llevar a cabo el uso de la herramienta debemos de dar permisos de ejecució
 
 ![ParrotPentesting-2022-05-29-16-56-52](https://user-images.githubusercontent.com/92258683/170876191-b1b34786-c2c2-435c-8796-1711a3451704.png)
 
-##SysAdmins
+## SysAdmins
 
 Recordad que es para gente que se esté iniciando en el entorno de Administración de Linux y para aquellos que quieran y/o deseen aprender a programar y automatizar todos los procesos.
