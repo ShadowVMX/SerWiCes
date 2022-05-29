@@ -1,0 +1,13 @@
+Whiptails es una herramienta que trae de serie BASH.
+
+Gracias a la herramienta de Whiptails podremos configurar herramientas a través del GUI en Linux para los usuarios,
+debemos de saber que, de esta forma, será todo muchísimo más intuitivo para los usuarios.
+
+serWices te mostrará todos los servicios que tienes activos tanto antes como después de llevar a cabo la herramienta,
+de esta forma, podrás verificar los cambios y/o modificaciones del mismo.
+
+En caso de querer parar en medio del proceso, he hecho un trap del ctrl_c para que no sea tan cansado para el usuario, es decir,
+en caso de no atraparlo, el script estará actuando hasta ver un "cancel" o ver una opción de salida pero, si necesita que sea 
+inminente, he programado dicho flujo de salida.
+
+SerWiCes---ShadowVMX
